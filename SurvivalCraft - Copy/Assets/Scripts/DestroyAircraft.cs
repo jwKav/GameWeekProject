@@ -32,6 +32,7 @@ public class DestroyAircraft : MonoBehaviour
             Destroy(transform.parent.parent.gameObject);
         }
         
+        
     }
     private void LateUpdate()
     {

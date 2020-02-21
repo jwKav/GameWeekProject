@@ -24,7 +24,7 @@ public class EnemyFireGun : MonoBehaviour
         if (Time.time > nextShot)
         {
             GameObject newBullet = Instantiate(bulletObject, transform.position, transform.rotation) as GameObject;
-            newBullet.GetComponent<Rigidbody>().velocity = transform.forward * Time.deltaTime * 600f;
+            newBullet.GetComponent<Rigidbody>().velocity = transform.forward * 600f;
 
             nextShot = Time.time + fireRate;
         }

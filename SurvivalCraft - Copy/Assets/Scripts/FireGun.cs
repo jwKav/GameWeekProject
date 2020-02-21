@@ -14,6 +14,8 @@ public class FireGun : MonoBehaviour
     [SerializeField]
     private float rocketRate = 0.5f;
     float nextShot;
+    private float bulletSpeed = 700f;
+    private float rocketSpeed = 400f;
     void Start()
     {
         weaponType = transform.gameObject;
@@ -23,12 +25,12 @@ public class FireGun : MonoBehaviour
         
         if (weaponType.CompareTag("MachineGun") && Input.GetButton("Jump"))
         {
-            ConsiderFiring(fireRate, bulletObject);
+            ConsiderFiring(fireRate, bulletObject, bulletSpeed);
         }
 
         if (weaponType.CompareTag("RocketLauncher") && Input.GetKeyDown(KeyCode.F))
         {
-            ConsiderFiring(rocketRate, rocketObject);
+            ConsiderFiring(rocketRate, rocketObject, rocketSpeed);
         }
 
         //else if (planeType.CompareTag("PlayerCollider"))
@@ -47,12 +49,12 @@ public class FireGun : MonoBehaviour
         //    return;
         //}
     }
-    public void ConsiderFiring(float fireRate, GameObject bulletObject)
+    public void ConsiderFiring(float fireRate, GameObject bulletObject, float projectileSpeed)
     {
         if (Time.time > nextShot)
         {
             GameObject newBullet = Instantiate(bulletObject, transform.position, transform.rotation) as GameObject;
-            newBullet.GetComponent<Rigidbody>().velocity = transform.forward * Time.deltaTime *500f;
+            newBullet.GetComponent<Rigidbody>().velocity = transform.forward * projectileSpeed;
 
             nextShot = Time.time + fireRate;
         }
