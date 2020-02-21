@@ -9,7 +9,6 @@ public class HealthBar : MonoBehaviour
 	public Slider slider;
 	public Gradient gradient;
 	public Image fill;
-	public DestroyAircraft playerPlane;
 
 	public void SetMaxHealth(int health)
 	{
@@ -21,8 +20,7 @@ public class HealthBar : MonoBehaviour
 
     public void SetHealth(int health)
 	{
-		playerPlane.health = health;
-		slider.value = playerPlane.health;
+		slider.value = health;
 
 		fill.color = gradient.Evaluate(slider.normalizedValue);
 	}

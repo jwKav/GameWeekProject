@@ -14,8 +14,8 @@ public class FireGun : MonoBehaviour
     [SerializeField]
     private float rocketRate = 0.5f;
     float nextShot;
-    private float bulletSpeed = 700f;
-    private float rocketSpeed = 400f;
+    private float bulletSpeed = 900f;
+    private float rocketSpeed = 600f;
     void Start()
     {
         weaponType = transform.gameObject;

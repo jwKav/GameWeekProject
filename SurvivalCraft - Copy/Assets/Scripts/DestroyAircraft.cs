@@ -2,9 +2,11 @@
 
 public class DestroyAircraft : MonoBehaviour
 {
+    public HealthBar healthBar;
     public GameObject explosion;
     public GameObject[] burnEffects;
-    public int maxHealth = 5;
+
+    public int maxHealth;
     public int health = 5;
 
     public int bulletDamage = 1;
@@ -24,6 +26,12 @@ public class DestroyAircraft : MonoBehaviour
             TakeDamage(health);
         }
     }
+    private void Start()
+    {
+        maxHealth = health;
+        healthBar.SetMaxHealth(maxHealth);
+        
+    }
     private void Update()
     {
         if (health <= 0f)
@@ -31,8 +39,11 @@ public class DestroyAircraft : MonoBehaviour
             Instantiate(explosion, transform.position, transform.rotation);
             Destroy(transform.parent.parent.gameObject);
         }
-        
-        
+        if (gameObject.CompareTag("Player"))
+        {
+            healthBar.SetHealth(health);
+        }
+
     }
     private void LateUpdate()
     {
@@ -40,6 +51,7 @@ public class DestroyAircraft : MonoBehaviour
         {
             Instantiate(burnEffects[i], transform.position, transform.rotation);
         }
+        
     }
     void TakeDamage(int i)
     {
